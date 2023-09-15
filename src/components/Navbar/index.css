@@ -1,0 +1,54 @@
+.Navbar{
+    width: 100vw;
+}
+
+.Navbar-superheroes-button {
+    position: absolute;
+    bottom: 0;
+    height: 94px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    border-top: 1px solid #3A2873
+}
+
+.Navbar-liked-button{
+    position: absolute;
+    bottom: 0;
+    height: 94px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    right: 0;
+    border-top: 1px solid #3A2873
+}
+
+.favorites-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.superheroes-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.navbar-button {
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.27308472990989685px;
+    text-align: center;
+    color: white;
+    margin-top: 8px;
+}
+
+.navbar-button--selected {
+    color: #8067FF;
+}
