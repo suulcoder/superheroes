@@ -46,3 +46,18 @@ export function* watchFetchSuperHeroes() {
         fetchSuperHeroes,
     );
 }
+
+function* likeSuperhero(action:Action) {
+    const element = document.getElementById('recently-liked');
+    if (element) {
+      // 👇 Will scroll smoothly to the top of the next section
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+  
+export function* watchLikeSuperhero() {
+    yield takeEvery(
+        types.LIKE_SUPERHEROE,
+        likeSuperhero,
+    );
+}

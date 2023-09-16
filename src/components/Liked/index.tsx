@@ -8,41 +8,17 @@ import downArrow from '../../assets/arrow-down/arrwo-down.svg'
 import bigHeartIcon from '../../assets/big-heart/big-heart.svg'
 import * as actions from '../../actions/liked';
 import { unlike_superhero } from '../../actions/superheroes';
-
-interface Card {
-  id? : number,
-  powerstats? : {
-    combat: number,
-    durability: number,
-    intelligence: number,
-    power: number,
-    speed: number,
-    strength: number,
-  }
-  images? : {
-    md : string
-  },
-  name? : string,
-  biography? : {
-    fullName : string
-  }
-}
-
-interface RootState {
-  isCollapsed: boolean,
-  superheroes: {
-    data: Array<Card>
-    favorites: Array<number>
-    last_liked: number
-  }
-}
+import RootState from '../../interfaces/RootState';
+import Card from '../../interfaces/Card';
+import '../Card/index.css'
 
 const mapState = (state: RootState) => ({
   collapsed: state.isCollapsed,
   last_liked: state.superheroes.last_liked,
-  favorites: state.superheroes.data.filter(
-    element => state.superheroes.favorites.includes(element.id?element.id:-1)
-    )
+  favorites: state.superheroes.favorites.map(
+    element => state.superheroes.data.filter(
+      sub_element => sub_element.id==element
+    )[0])
 })
 
 const mapDispatch = {
@@ -71,9 +47,11 @@ function Liked(props: Props) {
     return (
       <div className='Card' style={{width:'290px', height:'170px'}}>
         <div className='Card-content'>
-          {element.id&& element.id==props.last_liked && <div className='Card-liked-recently'>
-            Liked Recently
-          </div>}
+          {element.id&& element.id==props.last_liked && 
+            <div id={'recently-liked'} className='Card-liked-recently'>
+              Liked Recently
+            </div>
+          }
           <div className='Card-image-container'>
             <img 
               className='Card-image'

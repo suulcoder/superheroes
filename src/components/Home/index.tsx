@@ -6,12 +6,9 @@ import Superheroes from '../Superheroes';
 import './index.css';
 import { connect, ConnectedProps } from "react-redux";
 import ContentLoader from "react-content-loader"
+import RootState from '../../interfaces/RootState';
 
-interface RootState {
-    superheroes: {
-      isLoading: boolean,
-    }
-  }
+
   
 const mapState = (state: RootState) => {
     console.log(state)

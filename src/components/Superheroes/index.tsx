@@ -1,5 +1,4 @@
 import './index.css';
-import 'react-virtualized/styles.css';
 import likedLogo from '../../assets/medium-heart/medium-heart.svg'
 import fistLogo from '../../assets/fist/fist_yellow.svg'
 import { connect, ConnectedProps } from "react-redux";
@@ -8,33 +7,8 @@ import cancelIcon from '../../assets/cancel/cancel.svg'
 import { FixedSizeGrid as Grid } from 'react-window';
 import * as actions from '../../actions/search';
 import { like_superhero } from '../../actions/superheroes';
-
-interface Card {
-  id? : number,
-  powerstats? : {
-    combat: number,
-    durability: number,
-    intelligence: number,
-    power: number,
-    speed: number,
-    strength: number,
-  }
-  images? : {
-    md : string
-  },
-  name? : string,
-  biography? : {
-    fullName : string
-  }
-}
-
-interface RootState {
-  query: string,
-  superheroes: {
-    data: Array<Card>
-    favorites: Array<number>
-  }
-}
+import RootState from '../../interfaces/RootState';
+import Card from '../../interfaces/Card';
 
 const mapState = (state: RootState) => ({
   query: state.query,
@@ -77,7 +51,7 @@ function Superheroes(props : Props) {
       power = Math.round(Object.values(element.powerstats).reduce((a, b) => (a + b))/6)/10
     }
     return (
-      <div className='Card' style={data.style}>
+      <div className='Card' style={{...data.style}}>
         <div className='Card-content' >
           <div className='Card-image-container'>
             <img 
@@ -119,11 +93,12 @@ function Superheroes(props : Props) {
           props.heroes && props.heroes.length > 0 ? 
           <Grid
             columnCount={4}
-            columnWidth={285}
+            columnWidth={330}
             height={window.innerHeight*0.8}
             rowCount={props.heroes.length/4}
             rowHeight={180}
-            width={window.innerWidth*0.9}
+            width={1250}
+            style={{width:"100% !important", height:'90vh !important'}}
           >
             {Cell}
           </Grid> : 

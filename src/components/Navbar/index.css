@@ -19,6 +19,7 @@
     left: 0;
     position: absolute;
     width: 50%;
+    background: #11072F;
 }
 
 .Navbar-liked-button{
@@ -32,6 +33,7 @@
     position: absolute;
     right: 0;
     width: 50%;
+    background: #11072F;
 }
 
 .favorites-icon {
