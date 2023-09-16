@@ -1,14 +1,15 @@
 @media only screen and (min-width: 700px) {
     .Liked {
-        display: block !important;
         border-radius: 16px;
         border: 1px solid #6A4DBC70;
+        display: block !important;
         margin-bottom: 42px;
         padding: 16px;
     }
     
     .Liked-collapsed {
         display: block !important;
+        transition: background-color 0.3s ease;
         background: linear-gradient(0deg, rgba(106, 77, 188, 0.44), rgba(106, 77, 188, 0.44)),
         linear-gradient(0deg, rgba(106, 77, 188, 0.28), rgba(106, 77, 188, 0.28));
         border-radius: 16px;
@@ -19,6 +20,7 @@
 }
 
 .Liked-header {
+    transition: 0.3s ease;
     align-items: center;
     display: flex;
     flex-direction: row;

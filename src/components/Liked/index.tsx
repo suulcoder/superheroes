@@ -4,19 +4,22 @@ import likedLogo from '../../assets/medium-heart/medium-heart.svg'
 import collapseArrow from '../../assets/arrow-up/arrow-up.svg'
 import downArrow from '../../assets/arrow-down/arrwo-down.svg'
 import bigHeartIcon from '../../assets/big-heart/big-heart.svg'
+import * as actions from '../../actions/liked';
 
 interface RootState {
-  collapsed: boolean,
-  favorites: never[]
+  isCollapsed: boolean,
+  superheroes: {
+    data: never[],
+  }
 }
 
 const mapState = (state: RootState) => ({
-  collapsed: false,
-  favorites: []
+  collapsed: state.isCollapsed,
+  favorites: state.superheroes.data
 })
 
 const mapDispatch = {
-  
+  toggle_collapse: () => (actions.toggle_collapse()),
 }
 
 const connector = connect(mapState, mapDispatch)
@@ -41,11 +44,11 @@ function Liked(props: Props) {
           </div>
           {
             props.collapsed?
-            <div className='arrow-down-container'>
+            <div className='arrow-down-container' onClick={()=>props.toggle_collapse()}>
               <img src={downArrow} alt="Collapse icon" className="Collapse-icon"/>
             </div> 
              :
-            <img src={collapseArrow} alt="Collapse icon" className="Collapse-icon"/>
+            <img src={collapseArrow} onClick={()=>props.toggle_collapse()} alt="Collapse icon" className="Collapse-icon"/>
           }
         </div>
         {

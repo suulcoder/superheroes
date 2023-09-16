@@ -1,12 +1,12 @@
 import { fork, all } from 'redux-saga/effects';
 
-// import { 
-//   watchFetchModels, 
-// } from './models';
+import { 
+  watchFetchSuperHeroes, 
+} from './superheroes';
 
 function* mainSaga() {
   yield all([
-    //fork(watchFetchModels),
+    fork(watchFetchSuperHeroes),
   ]);
 }
 

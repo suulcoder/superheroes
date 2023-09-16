@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-//import models, * as modelSelectors from './models';
+import superheroes from './superheroes';
+import isCollapsed from './liked';
+import query from './search';
 
 const reducer = combineReducers({
-    //models
+    superheroes,
+    isCollapsed,
+    query
 });
 
 export default reducer;
-
-// export const getModelsData = state => modelSelectors.getModelsData(state.models);
-// export const getModelsError = state => modelSelectors.getModelsError(state.models);
-// export const getModelsIsLoading = state => modelSelectors.getModelsIsLoading(state.models);
