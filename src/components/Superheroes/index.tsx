@@ -9,6 +9,8 @@ import * as actions from '../../actions/search';
 import { like_superhero } from '../../actions/superheroes';
 import RootState from '../../interfaces/RootState';
 import Card from '../../interfaces/Card';
+import React, { useLayoutEffect, useState } from 'react';
+
 
 const mapState = (state: RootState) => ({
   query: state.query,
@@ -39,7 +41,22 @@ interface GridData {
   style: any
 }
 
+function useWindowSize() {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+}
+
+
 function Superheroes(props : Props) {
+  const [width, _] = useWindowSize();
 
   const Cell = (data : GridData) => {
     const element : Card = props.heroes[data.rowIndex*4 + data.columnIndex]
@@ -92,8 +109,24 @@ function Superheroes(props : Props) {
         {
           props.heroes && props.heroes.length > 0 ? 
           <Grid
-            columnCount={4}
-            columnWidth={(window.innerWidth/4 - 10)<300 ? 260 : window.innerWidth/4 - 10}
+            columnCount={
+              width>1100?
+              4:
+              (width>850?
+                3:
+                (width>550?
+                  2:
+                  1))
+              }
+            columnWidth={
+              width>1100?
+              (width/4 - 10)<300 ? 260 : width/4 - 10:
+              (width>850?
+                (width/3 - 10)<300 ? 260 : width/3 - 10:
+                (width>550?
+                  (width/2 - 10):
+                  (width - 30)))
+            }
             height={window.innerHeight*0.8}
             rowCount={props.heroes.length/4}
             rowHeight={180}
