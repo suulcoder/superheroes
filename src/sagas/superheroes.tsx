@@ -14,9 +14,14 @@ interface Action {
     payload: any
 }
 
+interface Custom_Response {
+    status: number,
+    data: any
+}
+
 function* fetchSuperHeroes(action:Action) {
     try {
-        const response : Response = yield axios.get(
+        const response : Custom_Response = yield axios.get(
           `${API_URL}`,
           {
             headers: {
@@ -26,7 +31,7 @@ function* fetchSuperHeroes(action:Action) {
           }
         )
         if(response.status == 200){
-            yield put(actions.complete_superheroes_fetch(response))
+            yield put(actions.complete_superheroes_fetch(response.data))
         } else {
             yield put(actions.fail_superheroes_fetch('Something went wrong'))
         }

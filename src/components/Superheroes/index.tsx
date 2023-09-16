@@ -1,15 +1,17 @@
 import './index.css';
 import 'react-virtualized/styles.css';
+import likedLogo from '../../assets/medium-heart/medium-heart.svg'
+import fistLogo from '../../assets/fist/fist_yellow.svg'
 import { connect, ConnectedProps } from "react-redux";
 import searchLogo from '../../assets/search/search.svg'
 import cancelIcon from '../../assets/cancel/cancel.svg'
-import List from 'react-virtualized/dist/commonjs/List';
+import { FixedSizeGrid as Grid } from 'react-window';
 import * as actions from '../../actions/search';
 
 interface RootState {
   query: string,
   superheroes: {
-    data: Array<Object>,
+    data: Array<Object>
   }
 }
 
@@ -31,8 +33,65 @@ interface Props extends PropsFromRedux {
   heroes: Array<Object>
 }
 
+interface GridData {
+  columnIndex : number, 
+  rowIndex : number
+  style: any
+}
+
+interface Card {
+  powerstats? : {
+    combat: number,
+    durability: number,
+    intelligence: number,
+    power: number,
+    speed: number,
+    strength: number,
+  }
+  images? : {
+    md : string
+  },
+  name? : string,
+  biography? : {
+    fullName : string
+  }
+}
+
 function Superheroes(props : Props) {
 
+  const Cell = (data : GridData) => {
+    const element : Card = props.heroes[data.rowIndex*4 + data.columnIndex]
+    var power : number = 0;
+    if (element.powerstats) {
+      power = Math.round(Object.values(element.powerstats).reduce((a, b) => (a + b))/6)/10
+    }
+    return (
+      <div className='Card' style={data.style}>
+        <div className='Card-content' >
+          <div className='Card-image-container'>
+            <img 
+              className='Card-image'
+              src={element.images?.md}
+              alt={element.name}
+            />
+            <div className="Liked-icon-container">
+                <img src={likedLogo} alt="Liked Icon" className="Liked-icon"/>
+              </div>
+            <div></div>
+          </div>
+          <div className='Card-info'>
+            <div className='Card-name'> {element.name} </div>
+            <div className='Card-real-name'> {'Real name:' + element.biography?.fullName} </div>
+            <div className='Card-power'>
+              <img src={fistLogo} alt="Liked Icon" className="Fist-icon"/>
+              <div className='Card-power-value'> {power} </div>
+              <div className='Card-power-total'> {' / 10'} </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  )};
 
     return (
       <div className="Superheroes">
@@ -47,8 +106,17 @@ function Superheroes(props : Props) {
           </div>
         </div>
         {
-          props.heroes.length > 0 ? 
-          <div/> : 
+          props.heroes && props.heroes.length > 0 ? 
+          <Grid
+            columnCount={4}
+            columnWidth={285}
+            height={window.innerHeight*0.8}
+            rowCount={props.heroes.length/4}
+            rowHeight={180}
+            width={window.innerWidth*0.9}
+          >
+            {Cell}
+          </Grid> : 
           <div className='error'>
             <div className='no-liked-text'>Error Conection</div>
           </div>

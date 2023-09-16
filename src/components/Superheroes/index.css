@@ -59,3 +59,99 @@
     justify-content: center;
     padding-top: 120px;
 }
+
+.Card-content {
+    background: linear-gradient(0deg, #292044, #292044),
+    linear-gradient(0deg, #6A4DBC, #6A4DBC);
+    border: 1px solid #6A4DBC;
+    width: 100%;
+    border-radius: 16px;
+    height: 158px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 16px;
+}
+
+.Card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Card-image { 
+    width: 105px;
+    height: 140px;
+    border-radius: 12px;
+}
+
+.Card-image-container { 
+    position: relative;
+    width: 112px;
+    height: 144px;
+}
+
+.Card-image-container .Liked-icon-container { 
+    position: absolute;
+    margin: 0 !important;
+    right: 0;
+    bottom: 0;
+}
+
+.Card-info { 
+    width: 132px;
+}
+
+.Card-name {
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0.3003932237625122px;
+    text-align: left;
+    color: #FFFFFF7D;
+}
+
+.Card-real-name {
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.27308472990989685px;
+    text-align: left;
+    color: #FFFFFF7D;
+}
+
+.Card-power {
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+}
+
+.Fist-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+}
+
+.Card-power-value {
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0.27308472990989685px;
+    text-align: left;
+    color: #FFFFFF;
+    margin-right: 8px;
+}
+
+.Card-power-total {
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 275;
+    line-height: 18px;
+    letter-spacing: 0.27308472990989685px;
+    text-align: left;
+    color: #FFFFFF7D;
+}

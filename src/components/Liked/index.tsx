@@ -9,13 +9,13 @@ import * as actions from '../../actions/liked';
 interface RootState {
   isCollapsed: boolean,
   superheroes: {
-    data: never[],
+    favorites: Array<number>,
   }
 }
 
 const mapState = (state: RootState) => ({
   collapsed: state.isCollapsed,
-  favorites: state.superheroes.data
+  favorites: state.superheroes.favorites
 })
 
 const mapDispatch = {
@@ -27,7 +27,7 @@ const connector = connect(mapState, mapDispatch)
 type PropsFromRedux = ConnectedProps<typeof connector>
 interface Props extends PropsFromRedux {
   collapsed: boolean,
-  favorites: never[]
+  favorites: Array<number>
 }
 
 function Liked(props: Props) {
@@ -52,7 +52,7 @@ function Liked(props: Props) {
           }
         </div>
         {
-          props.favorites.length===0 ? 
+          props.favorites && props.favorites.length===0 ? 
           <div className={props.collapsed?'no-liked collapsed':'no-liked'}>
             <img src={bigHeartIcon} alt="big heart icon" className="big-heart-icon"/>
             <div className='no-liked-text'>You haven’t liked any superhero yet</div>
