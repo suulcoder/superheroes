@@ -7,7 +7,7 @@ import favoritesIcon_selected from '../../assets/bottom-heart/bottom-heart_selec
 
 function Navbar() {
     return (
-      <div className="Navbar">
+      <div className={"Navbar"}>
         <div className='Navbar-superheroes-button'>
             <img src={superheroesIco_selected} alt="SuperHeroes Icon" className="superheroes-icon"/>
             <div className={'navbar-button ' + 'navbar-button--selected'}> Superheroes </div>

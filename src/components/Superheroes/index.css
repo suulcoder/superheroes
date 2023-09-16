@@ -1,51 +1,61 @@
-.Superheroes {
-
+@media only screen and (min-width: 700px) {
+    .Superheroes-header {
+        flex-direction: row !important;
+    }
 }
 
 .Superheroes-header {
-    display: flex;
-    flex-direction: row;
     align-items: center;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
 
 .Superheroes-title {
+    color: #FFFFFF;
     font-family: Poppins;
     font-size: 28px;
     font-weight: 700;
-    line-height: 42px;
     letter-spacing: 0.7253813147544861px;
+    line-height: 42px;
     text-align: left;
-    color: #FFFFFF;
 }
 
 .search {
+    align-items: center;
     background: #FFFFFF1A;
     border-radius: 32px;
-    height: 24px;
-    width: 300px;
     display: flex;
-    align-items: center;
-    padding: 8px;
+    height: 24px;
     justify-content: start;
+    padding: 8px;
+    width: 250px;
 }
 
 .search-icon {
-    width: 24px;
     height: 24px;
+    width: 24px;
 }
 
 .search-input {
-    height: 100%;
-    width: 100%;
+    background-color: transparent;
     border: 0px;
+    color: white;
     font-family: Poppins;
     font-size: 15px;
     font-weight: 400;
+    height: 100%;
+    letter-spacing: 0.27308472990989685px;
     line-height: 23px;
     padding-left: 8px;
-    letter-spacing: 0.27308472990989685px;
     text-align: left;
-    color: white;
-    background-color: transparent;
+    width: 100%;
+}
+
+.error {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 120px;
 }

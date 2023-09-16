@@ -1,54 +1,64 @@
+@media only screen and (min-width: 700px) {
+    .Navbar{
+        display: none;
+    }
+}
+
 .Navbar{
     width: 100vw;
 }
 
 .Navbar-superheroes-button {
-    position: absolute;
+    align-items: center;
+    border-top: 1px solid #3A2873;
     bottom: 0;
-    height: 94px;
-    width: 50%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    height: 94px;
     justify-content: center;
     left: 0;
-    border-top: 1px solid #3A2873
+    position: absolute;
+    width: 50%;
 }
 
 .Navbar-liked-button{
-    position: absolute;
-    bottom: 0;
-    height: 94px;
-    width: 50%;
-    display: flex;
     align-items: center;
-    justify-content: center;
+    border-top: 1px solid #3A2873;
+    bottom: 0;
+    display: flex;
     flex-direction: column;
+    height: 94px;
+    justify-content: center;
+    position: absolute;
     right: 0;
-    border-top: 1px solid #3A2873
+    width: 50%;
 }
 
 .favorites-icon {
-    width: 24px;
     height: 24px;
+    width: 24px;
 }
 
 .superheroes-icon {
-    width: 24px;
     height: 24px;
+    width: 24px;
 }
 
 .navbar-button {
+    color: white;
     font-family: Poppins;
     font-size: 12px;
     font-weight: 400;
-    line-height: 18px;
     letter-spacing: 0.27308472990989685px;
-    text-align: center;
-    color: white;
+    line-height: 18px;
     margin-top: 8px;
+    text-align: center;
 }
 
 .navbar-button--selected {
     color: #8067FF;
+}
+
+.hidden { 
+    display: none;
 }
