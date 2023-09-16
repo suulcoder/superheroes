@@ -17,7 +17,7 @@ const mapState = (state: RootState) => ({
   last_liked: state.superheroes.last_liked,
   favorites: state.superheroes.favorites.map(
     element => state.superheroes.data.filter(
-      sub_element => sub_element.id==element
+      sub_element => sub_element.id===element
     )[0])
 })
 
@@ -45,9 +45,9 @@ function Liked(props: Props) {
       power = Math.round(Object.values(element.powerstats).reduce((a, b) => (a + b))/6)/10
     }
     return (
-      <div className='Card' style={{width:'290px', height:'170px'}}>
+      <div className='Card' style={{width:'300px', height:'170px'}}>
         <div className='Card-content'>
-          {element.id&& element.id==props.last_liked && 
+          {element.id&& element.id===props.last_liked && 
             <div id={'recently-liked'} className='Card-liked-recently'>
               Liked Recently
             </div>
@@ -97,7 +97,7 @@ function Liked(props: Props) {
           }
         </div>
         {
-          props.favorites && props.favorites.length==0 ? 
+          props.favorites && props.favorites.length===0 ? 
           <div className={props.collapsed?'no-liked collapsed':'no-liked'}>
             <img src={bigHeartIcon} alt="big heart icon" className="big-heart-icon"/>
             <div className='no-liked-text'>You haven’t liked any superhero yet</div>

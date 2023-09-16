@@ -93,12 +93,12 @@ function Superheroes(props : Props) {
           props.heroes && props.heroes.length > 0 ? 
           <Grid
             columnCount={4}
-            columnWidth={330}
+            columnWidth={(window.innerWidth/4 - 10)<300 ? 260 : window.innerWidth/4 - 10}
             height={window.innerHeight*0.8}
             rowCount={props.heroes.length/4}
             rowHeight={180}
             width={1250}
-            style={{width:"100% !important", height:'90vh !important'}}
+            style={{width:"100% !important"}}
           >
             {Cell}
           </Grid> : 

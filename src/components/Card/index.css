@@ -3,6 +3,11 @@
     margin-bottom: 10px;
 }
 
+.Card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
 .Card-liked-recently {
     background: #7B61FF;
     width: 76px;

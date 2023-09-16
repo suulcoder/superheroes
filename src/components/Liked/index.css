@@ -1,26 +1,4 @@
-@media only screen and (min-width: 750px) {
-    .Liked {
-        border-radius: 16px;
-        border: 1px solid #6A4DBC70;
-        display: block !important;
-        margin-bottom: 42px;
-        padding: 16px;
-    }
-    
-    .Liked-collapsed {
-        display: block !important;
-        transition: background-color 0.3s ease;
-        background: linear-gradient(0deg, rgba(106, 77, 188, 0.44), rgba(106, 77, 188, 0.44)),
-        linear-gradient(0deg, rgba(106, 77, 188, 0.28), rgba(106, 77, 188, 0.28));
-        border-radius: 16px;
-        border: 1px solid #6A4DBC70;
-        margin-bottom: 42px;
-        padding: 16px;
-    }
-}
-
 .Liked-header {
-    transition: 0.3s ease;
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -28,12 +6,22 @@
     flex-wrap: wrap;
 }
 
-.Liked{
-    display: none;
+.Liked {
+    border-radius: 16px;
+    border: 1px solid #6A4DBC70;
+    display: block !important;
+    margin-bottom: 42px;
+    padding: 16px;
 }
 
-.Liked-collapsed{
-    display: none;
+.Liked-collapsed {
+    display: block !important;
+    background: linear-gradient(0deg, rgba(106, 77, 188, 0.44), rgba(106, 77, 188, 0.44)),
+    linear-gradient(0deg, rgba(106, 77, 188, 0.28), rgba(106, 77, 188, 0.28));
+    border-radius: 16px;
+    border: 1px solid #6A4DBC70;
+    margin-bottom: 42px;
+    padding: 16px;
 }
 
 .arrow-down-container {
@@ -44,6 +32,11 @@
     height: 40px;
     justify-content: center;
     width: 40px;
+}
+
+.arrow-down-container:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 .Liked-name-container {
@@ -95,6 +88,11 @@
 
 .collapsed { 
     display: none;
+}
+
+.Collapse-icon:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 .Liked-list {

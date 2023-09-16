@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import Header from '../Header';
 import Liked from '../Liked';
-import Navbar from '../Navbar';
 import Superheroes from '../Superheroes';
 import './index.css';
 import { connect, ConnectedProps } from "react-redux";
@@ -59,7 +58,6 @@ function Home(props: Props) {
             <Fragment>
                 <Liked/>
                 <Superheroes/>
-                <Navbar/>
             </Fragment>
         }
         
