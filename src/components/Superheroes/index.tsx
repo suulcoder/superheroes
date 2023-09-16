@@ -7,39 +7,10 @@ import searchLogo from '../../assets/search/search.svg'
 import cancelIcon from '../../assets/cancel/cancel.svg'
 import { FixedSizeGrid as Grid } from 'react-window';
 import * as actions from '../../actions/search';
-
-interface RootState {
-  query: string,
-  superheroes: {
-    data: Array<Object>
-  }
-}
-
-const mapState = (state: RootState) => ({
-  query: state.query,
-  heroes: state.superheroes.data
-})
-
-const mapDispatch = {
-  on_change: (event:any) => (actions.search_query(event.target.value)),
-  on_clean: (_:any) => (actions.clean_query()),
-}
-
-const connector = connect(mapState, mapDispatch)
-
-type PropsFromRedux = ConnectedProps<typeof connector>
-interface Props extends PropsFromRedux {
-  query: string,
-  heroes: Array<Object>
-}
-
-interface GridData {
-  columnIndex : number, 
-  rowIndex : number
-  style: any
-}
+import { like_superhero } from '../../actions/superheroes';
 
 interface Card {
+  id? : number,
   powerstats? : {
     combat: number,
     durability: number,
@@ -57,10 +28,50 @@ interface Card {
   }
 }
 
+interface RootState {
+  query: string,
+  superheroes: {
+    data: Array<Card>
+    favorites: Array<number>
+  }
+}
+
+const mapState = (state: RootState) => ({
+  query: state.query,
+  heroes: state.superheroes.data.filter(
+    element => (
+      element.name?.toLowerCase().includes(state.query.toLowerCase()) || 
+      element.biography?.fullName.toLowerCase().includes(state.query.toLowerCase()))
+    ).filter(element => !state.superheroes.favorites.includes(element.id?element.id:-1))
+})
+
+const mapDispatch = {
+  on_change: (event:any) => (actions.search_query(event.target.value)),
+  on_clean: (_:any) => (actions.clean_query()),
+  like: (id:number) => (like_superhero(id))
+}
+
+const connector = connect(mapState, mapDispatch)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+interface Props extends PropsFromRedux {
+  query: string,
+  heroes: Array<Object>
+}
+
+interface GridData {
+  columnIndex : number, 
+  rowIndex : number
+  style: any
+}
+
 function Superheroes(props : Props) {
 
   const Cell = (data : GridData) => {
     const element : Card = props.heroes[data.rowIndex*4 + data.columnIndex]
+    if (!element){
+      return <div></div>
+    }
     var power : number = 0;
     if (element.powerstats) {
       power = Math.round(Object.values(element.powerstats).reduce((a, b) => (a + b))/6)/10
@@ -74,7 +85,7 @@ function Superheroes(props : Props) {
               src={element.images?.md}
               alt={element.name}
             />
-            <div className="Liked-icon-container">
+            <div className="Liked-icon-container" onClick={()=>props.like(element.id?element.id:-1)}>
                 <img src={likedLogo} alt="Liked Icon" className="Liked-icon"/>
               </div>
             <div></div>
@@ -89,7 +100,6 @@ function Superheroes(props : Props) {
             </div>
           </div>
         </div>
-
       </div>
   )};
 
@@ -118,7 +128,7 @@ function Superheroes(props : Props) {
             {Cell}
           </Grid> : 
           <div className='error'>
-            <div className='no-liked-text'>Error Conection</div>
+            <div className='no-liked-text'>No Superheroes Found</div>
           </div>
         }
       </div>

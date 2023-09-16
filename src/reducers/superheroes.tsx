@@ -22,10 +22,20 @@ export const data = (state = [], action : Action) => {
     }
 };
 
+export const last_liked = (state:number=-1, action:Action)=>{
+    switch (action.type) {
+        case types.LIKE_SUPERHEROE: {
+          return action.payload;
+        }
+        default:
+          return state;
+      }
+}
+
 export const favorites = (state : Array<number> = [23, 1, 45, 12], action : Action) => {
     switch (action.type) {
       case types.LIKE_SUPERHEROE: {
-        return state.push(action.payload);
+        return state.concat([action.payload]);
       }
       case types.UNLIKE_SUPERHEROE: {
         return state.filter((id) => id!=action.payload);
@@ -72,6 +82,7 @@ const superheroes = combineReducers({
     favorites,
     isLoading,
     error,
+    last_liked
 });
 
 export default superheroes;

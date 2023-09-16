@@ -96,3 +96,30 @@
 .collapsed { 
     display: none;
 }
+
+.Liked-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.Card {
+    position: relative;
+}
+
+.Card-liked-recently {
+    background: #7B61FF;
+    width: 76px;
+    height: 19px;
+    border-radius: 6px;
+    font-family: Poppins;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #FFFFFF;
+    position: absolute;
+    top: 0;
+    right: 0;
+}

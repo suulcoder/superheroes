@@ -14,10 +14,12 @@ export const fail_superheroes_fetch = (error:string) => ({
     payload: error,
 });
 
-export const like_superhero = () => ({
+export const like_superhero = (id:number) => ({
     type: types.LIKE_SUPERHEROE,
+    payload:id
 });
 
-export const unlike_superhero = () => ({
+export const unlike_superhero = (id:number) => ({
     type: types.UNLIKE_SUPERHEROE,
+    payload:id
 });
