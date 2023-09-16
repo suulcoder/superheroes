@@ -9,7 +9,7 @@ import * as actions from '../../actions/search';
 interface RootState {
   query: string,
   superheroes: {
-    data: never[],
+    data: Array<Object>,
   }
 }
 
@@ -28,16 +28,11 @@ const connector = connect(mapState, mapDispatch)
 type PropsFromRedux = ConnectedProps<typeof connector>
 interface Props extends PropsFromRedux {
   query: string,
-  heroes: never[]
+  heroes: Array<Object>
 }
 
 function Superheroes(props : Props) {
 
-  function renderRow(row_props: Object) {
-    return (
-      <div></div>
-    );
-  }
 
     return (
       <div className="Superheroes">
@@ -53,15 +48,7 @@ function Superheroes(props : Props) {
         </div>
         {
           props.heroes.length > 0 ? 
-          <List 
-            className='superheroes-list' 
-            rowHeight={60}
-            height={80} 
-            rowCount={4} 
-            width={200} 
-            overscanRowCount={3}
-            rowRenderer={renderRow}
-          /> : 
+          <div/> : 
           <div className='error'>
             <div className='no-liked-text'>Error Conection</div>
           </div>

@@ -25,12 +25,11 @@ function* fetchSuperHeroes(action:Action) {
             },
           }
         )
-        .then((response) => {
-            console.log(response)
-            if(response.status == 200){
-            }
-        })
-        yield put(actions.complete_superheroes_fetch(response))
+        if(response.status == 200){
+            yield put(actions.complete_superheroes_fetch(response))
+        } else {
+            yield put(actions.fail_superheroes_fetch('Something went wrong'))
+        }
     } catch (error ) {
         yield put(actions.fail_superheroes_fetch('Something went wrong'))
     }

@@ -14,7 +14,7 @@ export const configureStore = () => {
     {
       key: 'rootx',
       storage,
-      whitelist: [],
+      whitelist: ['isCollapsed'],
       blacklist: []
     },
     reducer,

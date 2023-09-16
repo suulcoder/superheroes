@@ -1,36 +1,74 @@
-import React, { useEffect } from 'react';
+import React, { Fragment } from 'react';
 import Header from '../Header';
 import Liked from '../Liked';
 import Navbar from '../Navbar';
 import Superheroes from '../Superheroes';
 import './index.css';
 import { connect, ConnectedProps } from "react-redux";
-import { start_superheroes_fetch } from '../../actions/superheroes';
+import ContentLoader from "react-content-loader"
 
-const mapDispatch = {
-    fetch_superheroes: () => (start_superheroes_fetch()),
+interface RootState {
+    superheroes: {
+      isLoading: boolean,
+    }
   }
   
-const connector = connect(undefined, mapDispatch)
+const mapState = (state: RootState) => {
+    console.log(state)
+    return ({
+        isloading: state.superheroes.isLoading
+})}
+  
+const connector = connect(mapState, undefined)
 
 type PropsFromRedux = ConnectedProps<typeof connector>
-interface Props extends PropsFromRedux {}
+interface Props extends PropsFromRedux {
+    isloading: boolean
+}
 
 function Home(props: Props) {
-
-    useEffect(() => {
-        props.fetch_superheroes()
-    });
-
     return (
       <div className="Home">
         <Header/>
-        <Liked/>
-        <Superheroes/>
-        <Navbar/>
+        {
+            props.isloading ? 
+            <ContentLoader 
+                speed={2}
+                width={window.innerWidth}
+                height={window.innerHeight}
+                viewBox={"0 0 " + window.innerWidth + " " + window.innerHeight}
+                backgroundColor="#6A4DBC"
+                foregroundColor="#11072F"
+            >
+                <rect x="0" y="30" rx="10" ry="10" width="285" height="27" /> 
+                <rect x="0" y="72" rx="10" ry="10" width="285" height="174" /> 
+                <rect x="296" y="72" rx="10" ry="10" width="285" height="174" /> 
+                <rect x="592" y="72" rx="10" ry="10" width="285" height="174" /> 
+                <rect x="888" y="72" rx="10" ry="10" width="285" height="174" /> 
+
+                <rect x="0" y="300" rx="10" ry="10" width="285" height="27"/> 
+                <rect x="0" y="342" rx="10" ry="10" width="285" height="174" /> 
+                <rect x="296" y="342" rx="10" ry="10" width="285" height="174" /> 
+                <rect x="592" y="342" rx="10" ry="10" width="285" height="174" /> 
+                <rect x="888" y="342" rx="10" ry="10" width="285" height="174" /> 
+
+                <rect x="0" y="532" rx="10" ry="10" width="285" height="174" /> 
+                <rect x="296" y="532" rx="10" ry="10" width="285" height="174" /> 
+                <rect x="592" y="532" rx="10" ry="10" width="285" height="174" /> 
+                <rect x="888" y="532" rx="10" ry="10" width="285" height="174" /> 
+
+          </ContentLoader>
+            : 
+            <Fragment>
+                <Liked/>
+                <Superheroes/>
+                <Navbar/>
+            </Fragment>
+        }
+        
       </div>
     );
   }
   
-  export default connector(Home)
+export default connector(Home)
   
