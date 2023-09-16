@@ -1,8 +1,8 @@
-# BEFORE RUNNING THIS APP. 
+# Getting Started with Create React App
+
+## BEFORE RUNNING THIS APP. 
 
 Go to https://cors-anywhere.herokuapp.com/%3CAPI%3E, and make the feature available 
-
-# Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
